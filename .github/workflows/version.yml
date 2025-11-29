@@ -6,11 +6,13 @@ on:
     paths:
       - 'src/**/*.c'
       - 'src/**/*.h'
+      - 'README.md'
   pull_request:
     branches: [ main, master ]
     paths:
       - 'src/**/*.c'
       - 'src/**/*.h'
+      - 'README.md'
 
 jobs:
   version-update:

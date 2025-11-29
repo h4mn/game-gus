@@ -33,10 +33,10 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         gcc --version
-        if [ -f "game-gus.c" ]; then
-          gcc -o game-gus game-gus.c -Wall -Wextra -pedantic
+        if [ -f "src/game-gus.c" ]; then
+          gcc -o game-gus src/game-gus.c -Wall -Wextra -pedantic
         else
-          echo "Arquivo game-gus.c não encontrado"
+          echo "Arquivo src/game-gus.c não encontrado"
           exit 1
         fi
 
@@ -44,10 +44,10 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         gcc --version
-        if (Test-Path "game-gus.c") {
-          gcc -o game-gus.exe game-gus.c -Wall -Wextra -pedantic
+        if (Test-Path "src/game-gus.c") {
+          gcc -o game-gus.exe src/game-gus.c -Wall -Wextra -pedantic
         } else {
-          Write-Host "Arquivo game-gus.c não encontrado"
+          Write-Host "Arquivo src/game-gus.c não encontrado"
           exit 1
         }
 

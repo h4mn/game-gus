@@ -62,8 +62,8 @@ jobs:
     - name: Update version in README
       if: steps.version.outputs.version_changed == 'true'
       run: |
-        # Update version in README.md
-        sed -i "s/Versão: [0-9]\+\.[0-9]\+\.[0-9]\+/Versão: ${{ steps.version.outputs.new_version }}/g" README.md
+        # Update version in README.md (handle markdown bold formatting)
+        sed -i "s/\*\*Versão:\*\* [0-9]\+\.[0-9]\+\.[0-9]\+/\*\*Versão:\*\* ${{ steps.version.outputs.new_version }}/g" README.md
 
         # Update version in game source if it exists
         if [ -f "src/game-gus.c" ]; then

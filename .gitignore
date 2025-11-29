@@ -18,3 +18,10 @@ save/
 
 # Configurações locais
 config.ini
+
+# Node.js
+node_modules/
+package-lock.json
+
+# Claude/MCP
+.claude/.env

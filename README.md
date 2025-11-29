@@ -112,7 +112,8 @@ gcc game-gus.c -o game.exe
 
 ## 📝 Créditos
 
-**Desenvolvimento Original:** Gustavo Secco, Gustavo Silva, Luiz Saia, Vinícius Heleno, Hadston Nunes
+**Desenvolvimento Original:** Gustavo Secco, Gustavo Silva, Luiz Saia, Vinícius Heleno
+**Lead Developer:** Hadston Nunes
 **Otimizações e Interface:** Sky (Agente de Desenvolvimento)
 **Versão:** 0.0.1 (Otimizado)
 

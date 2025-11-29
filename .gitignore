@@ -1,0 +1,20 @@
+# Arquivos do compilador
+*.exe
+*.obj
+*.o
+*.out
+
+# Arquivos temporários
+*.tmp
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de save do jogo
+*.save
+save/
+
+# Configurações locais
+config.ini

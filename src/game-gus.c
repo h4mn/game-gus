@@ -52,6 +52,11 @@ int kbhit() {
 
     return 0;
 }
+
+// Add getch() alias for Linux compatibility
+int getch() {
+    return _getch();
+}
 #endif
 
 #define MAX_LINHA 15
@@ -72,7 +77,7 @@ int main (void)
     int px = 1, py = 1;                                             //Posicao Player
     int ox, oy;                                                     //Variaveis do Bau
     int mx = (int)(MAX_LINHA * 0.7), my = (int)(MAX_COLUNA * 0.6);  //Posicao Monstro
-    int x, y, movimentoRealizado, xDoor, yDoor;                     //Variaveis relacionadas a movimento e posição
+    int x, y, xDoor, yDoor;                     //Variaveis relacionadas a movimento e posição
     int colisaoM = 0, colisaoBau = 0, bauCheio = 1;                 //Variaveis de condição de objetos e ações
     int timer = 0;                                                  //Var para duração de tocha
     int monstroCD = 0;                                              //Var para movimentar monstro
@@ -249,22 +254,22 @@ int main (void)
         int dano = 176;
         if (vidaPlayer == 3)
         {
-        printf("\nPontos de Vida: %c %c %c\n", hp, hp, hp);
+        printf("\\nPontos de Vida: %c %c %c\n", hp, hp, hp);
         }
 
         else if (vidaPlayer == 2)
         {
-        printf("\nPontos de Vida: %c %c %c\n", hp, hp, dano);
+        printf("\\nPontos de Vida: %c %c %c\n", hp, hp, dano);
         }
 
         else if (vidaPlayer == 1)
         {
-        printf("\nPontos de Vida: %c %c %c\n", hp, dano, dano);
+        printf("\\nPontos de Vida: %c %c %c\n", hp, dano, dano);
         }
 
         else if (vidaPlayer == 0)
         {
-        printf("\Pontos de Vida: %c %c %c\n", dano, dano, dano);
+        printf("\\Pontos de Vida: %c %c %c\n", dano, dano, dano);
         printf("Sua visao comeca a escurecer...\n\nFim de jogo!\n\n");
         system("PAUSE");
         break;
@@ -279,7 +284,7 @@ int main (void)
             timer--;
         }
 
-        movimentoRealizado = 1;
+        // movimentoRealizado = 1; // Removed unused variable
         danoPlayer = 0;
         colisaoM = 0;
         colisaoBau = 0;                                                                         //Condições e lógica // Fim
@@ -294,32 +299,32 @@ int main (void)
                 if ((px == xDoor) && (py - 1 == yDoor) && chave == 0)
                 {
                     logPorta = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if ((px == xDoor) && (py - 1 == yDoor) && chave == 1)
                 {
                     abriuPorta = 1;
                     py--;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px == ox && py - 1 == oy) // Mover pra Bau
                 {
                     colisaoBau = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px == mx && py - 1 == my) // Mover pra monstro
                 {
                     colisaoM = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (py >= 2)
                 {
                     py--;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
                 break;
 
@@ -328,32 +333,32 @@ int main (void)
                 if ((px - 1 == xDoor) && (py == yDoor) && chave == 0)
                 {
                     logPorta = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if ((px - 1 == xDoor) && (py == yDoor) && chave == 1)
                 {
                     abriuPorta = 1;
                     px--;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px - 1 == ox && py == oy) // Bau
                 {
                     colisaoBau = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px - 1 == mx && py == my) // Monstro
                 {
                     colisaoM = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px >= 2)
                 {
                     px--;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
                 break;
 
@@ -362,32 +367,32 @@ int main (void)
                 if ((px == xDoor) && (py + 1 == yDoor) && chave == 0)
                 {
                     logPorta = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if ((px == xDoor) && (py + 1 == yDoor) && chave == 1)
                 {
                     abriuPorta = 1;
                     py++;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px == ox && py + 1 == oy) // Bau
                 {
                     colisaoBau = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px == mx && py + 1 == my) // Monstro
                 {
                     colisaoM = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (py <= MAX_COLUNA-2)
                 {
                     py++;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
                 break;
 
@@ -396,32 +401,32 @@ int main (void)
                 if ((px + 1 == xDoor) && (py == yDoor) && chave == 0)
                 {
                     logPorta = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if ((px + 1 == xDoor) && (py == yDoor) && chave == 1)
                 {
                     abriuPorta = 1;
                     px++;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px + 1 == ox && py == oy) // Bau
                 {
                     colisaoBau = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px + 1 == mx && py == my) // Monstro
                 {
                     colisaoM = 1;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
 
                 else if (px <= MAX_LINHA-2)
                 {
                     px++;
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
                 break;
 
@@ -435,13 +440,13 @@ int main (void)
                     if (confirm == 'q' || confirm == 'Q') {
                         exit(0);
                     }
-                    movimentoRealizado = 0;
+                    // movimentoRealizado = 0; // Removed unused variable
                 }
                 break;
 
             default:
                 // Comando inválido - não mostra erro, apenas não move
-                movimentoRealizado = 1; // força recálculo do movimento
+                // movimentoRealizado = 1; // Removed unused variable // força recálculo do movimento
                 break;
         }                                                                                       //Movimentação // Fim
 

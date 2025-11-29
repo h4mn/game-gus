@@ -52,6 +52,7 @@ jobs:
         }
 
     - name: Test binary exists
+      shell: bash
       run: |
         if [[ "$RUNNER_OS" == "Linux" ]]; then
           [ -f "game-gus" ] && echo "✅ Binary created successfully" || exit 1

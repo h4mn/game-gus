@@ -1,0 +1,69 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+
+    - name: Setup (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        # Windows já vem com GCC/MinGW no runner
+
+    - name: Compile (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        gcc --version
+        if [ -f "game-gus.c" ]; then
+          gcc -o game-gus game-gus.c -Wall -Wextra -pedantic
+        else
+          echo "Arquivo game-gus.c não encontrado"
+          exit 1
+        fi
+
+    - name: Compile (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        gcc --version
+        if (Test-Path "game-gus.c") {
+          gcc -o game-gus.exe game-gus.c -Wall -Wextra -pedantic
+        } else {
+          Write-Host "Arquivo game-gus.c não encontrado"
+          exit 1
+        }
+
+    - name: Test binary exists
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          [ -f "game-gus" ] && echo "✅ Binary created successfully" || exit 1
+        else
+          [ -f "game-gus.exe" ] && echo "✅ Binary created successfully" || exit 1
+        fi
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: game-gus-${{ matrix.os }}
+        path: |
+          game-gus
+          game-gus.exe
+        retention-days: 30
